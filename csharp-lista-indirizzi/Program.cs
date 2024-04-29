@@ -27,6 +27,7 @@ namespace csharp_lista_indirizzi
                 Console.WriteLine($"{address.Name} {address.Surname}, {address.Street}, {address.City}, {address.Province}, {address.ZIP}");
             }
 
+            //richiamo della funzione per la stampa della nuova lista in un nuovo file
             StampaLista(addresses, path2);
 
 
