@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System.Net;
+using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace csharp_lista_indirizzi
@@ -11,15 +12,24 @@ namespace csharp_lista_indirizzi
             //creo il path del percorso
             string path = "C:\\Users\\andre\\Desktop\\Boolean\\C#\\addresses.txt";
 
+            //path del secondo percorso (dove memorizzo gli indirizzi)
+            string path2 = "C:\\Users\\andre\\Desktop\\Boolean\\C#\\addresses2.txt";
+
+
             // legge gli indirizzi dal file e li memorizza in una lista
             List<Address> addresses = LeggiDaTesto(path);
 
+
             //stampa gli indirizzi
             foreach (var address in addresses)
-            {   
+            {
                 Console.WriteLine();
                 Console.WriteLine($"{address.Name} {address.Surname}, {address.Street}, {address.City}, {address.Province}, {address.ZIP}");
             }
+
+            StampaLista(addresses, path2);
+
+
         }
 
         //metodo per leggere il file
@@ -124,6 +134,22 @@ namespace csharp_lista_indirizzi
 
             //ritorna la lista
             return addresses;
+        }
+
+
+        //creao un metodo per stampare la lista su un nuovo file
+        public static void StampaLista(List<Address>addresses, string path)
+        {
+
+            //creo il nuovo file
+            using StreamWriter stream = File.CreateText(path);
+
+            //itero gli elemento che verranno inseriti all'interno del nuovo file
+            foreach (var address in addresses)
+            {
+                //scrivo le righe
+                stream.WriteLine(address.ToString());
+            }
         }
     }
 }

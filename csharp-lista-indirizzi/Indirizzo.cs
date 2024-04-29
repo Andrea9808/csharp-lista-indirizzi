@@ -25,7 +25,14 @@ namespace csharp_lista_indirizzi
             this.ZIP = zip;
         }
 
+        //sovrascrittura del ToString
+        public override string ToString()
+        {
+            return $"{Name}, {Surname}, {Street}, {City}, {Province}, {ZIP}";
+        }
+
     }
+
 
   
 }
